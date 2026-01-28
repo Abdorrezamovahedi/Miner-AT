@@ -11,30 +11,81 @@
 
     <style>
         body{
-            background-image: url(background-site.jpg);
-            background-size:cover;
-            background-repeat: no-repeat;
+            background-color: rgb(76, 0, 255);
 
             
         }
 
-        #table1{
+        .text{
+            color: rgb(0, 247, 255);
+            font-family: 'Lalezar', cursive;
+            text-shadow:
+            0 0 10px rgb(0, 130, 190),
+            0 0 15px rgb(5, 38, 87),
+            0 0 20px rgb(5, 38, 87);
+
+            font-size: 150%;
+            text-align: center;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .text:hover{
+            font-size: 300%;
+            color: rgb(0, 0, 0);
+        }
+
+        .i{
+            width: 10%;
+        }
+
+        #p{
+            color:red;
+            font-family: 'Lalezar', cursive;
+            text-align: center;
+            background-color: black;
+            transition: all 0.5s ease-in-out;
+        }
+
+        #p:hover{
+            color: rgb(0, 0, 0);
+            background-color: rgb(190, 190, 190);
+            box-shadow: 
+            0 0 10px rgb(255, 0, 0),
+            0 0 10px rgb(255, 251, 0),
+            0 0 100px rgb(0, 255, 221);
 
         }
 
-        .text{
-            color: rgb(0, 183, 255);
-            font-family: 'Lalezar', cursive;
+        .img-link{
+            width: 20%;
+            background-attachment:fixed ;
+
+        }
+
+        #table2 img{
+            width:50px;
         }
     </style>
 </head>
 <body>
+    <a href="#">
+    <p id="p">دانلود اسکین</p>
+    </a>
+    <hr>
     <table id="table1" align="center">
         <tr>
             <td>
-                <p><h1 class="text">!(Miner AT)خوش آمدید به سایت</h1></p>
+                <p><h1 class="text"><img  class="i" src="a.gif">!( Miner AT ) خوش آمدید به</h1></p>
             </td>
         </tr>
     </table>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
 </body>
 </html>
