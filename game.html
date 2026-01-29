@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style3.css">
+<title>Mini Pixel Game</title>
+</head>
+<body>
+
+<div id="tutorial">
+<h2>آموزش بازی</h2>
+<p>هدف بازی: جمع‌آوری سکه‌ها و افزایش امتیاز</p>
+<p>کنترل‌ها:</p>
+<ul>
+    <li><strong>کامپیوتر:</strong> از کلیدهای جهت‌نما ← ↑ → ↓ برای حرکت استفاده کنید.</li>
+    <li><strong>گوشی موبایل:</strong> از دکمه‌های زیر برای حرکت کاراکتر استفاده کنید.</li>
+</ul>
+</div>
+
+<div id="score">امتیاز: 0</div>
+<div id="gameContainer">
+    <div id="player"></div>
+</div>
+
+<div class="controls">
+    <div class="control-btn" onclick="move(-5,0)">◀</div>
+    <div class="control-btn" onclick="move(0,5)">▲</div>
+    <div class="control-btn" onclick="move(5,0)">▶</div>
+    <div class="control-btn" onclick="move(0,-5)">▼</div>
+</div>
+
+<script>
+const player = document.getElementById('player');
+const container = document.getElementById('gameContainer');
+const scoreEl = document.getElementById('score');
+
+let playerX = 50;
+let playerY = 0;
+let speed = 5;
+let coins = [];
+let score = 0;
+
+document.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowLeft') move(-speed,0);
+    if(e.key === 'ArrowRight') move(speed,0);
+    if(e.key === 'ArrowUp') move(0,speed);
+    if(e.key === 'ArrowDown') move(0,-speed);
+});
+
+function move(dx,dy){
+    playerX += dx;
+    playerY += dy;
+    if(playerX < 0) playerX = 0;
+    if(playerX > 470) playerX = 470;
+    if(playerY < 0) playerY = 0;
+    if(playerY > 270) playerY = 270;
+    player.style.left = playerX+'px';
+    player.style.bottom = playerY+'px';
+}
+
+// تولید سکه تصادفی
+function spawnCoin(){
+    const coin = document.createElement('div');
+    coin.classList.add('coin');
+    coin.style.left = Math.random()*480+'px';
+    coin.style.bottom = Math.random()*280+'px';
+    container.appendChild(coin);
+    coins.push(coin);
+}
+
+setInterval(spawnCoin,2000);
+
+// چک کردن برخورد
+function checkCollision(){
+    coins.forEach((coin,i)=>{
+        const px = playerX;
+        const py = playerY;
+        const cx = parseFloat(coin.style.left);
+        const cy = parseFloat(coin.style.bottom);
+        if(Math.abs(px-cx)<30 && Math.abs(py-cy)<30){
+            score++;
+            scoreEl.textContent = "امتیاز: "+score;
+            container.removeChild(coin);
+            coins.splice(i,1);
+        }
+    });
+}
+
+setInterval(checkCollision,50);
+</script>
+
+</body>
+</html>
