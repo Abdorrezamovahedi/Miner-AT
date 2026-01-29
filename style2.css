@@ -1,0 +1,52 @@
+body{
+    background-image: url(mine.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family:'Lalezar', cursive;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+/* نوشته دانلود اسکین */
+#t{
+    color: #00f7ff;
+    font-size: 2em;
+    text-align: center;
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+    width: 80%;
+    margin: 0 auto;
+    display:inline-block;
+    cursor:pointer;
+    animation: jump 1s infinite alternate, colorShift 3s infinite alternate;
+    transition: transform 0.3s;
+}
+
+#t:hover{
+    transform: scale(1.1);
+}
+
+/* جهش پیکسلی */
+@keyframes jump {
+    0%,100%{ transform: translateY(0); }
+    25%{ transform: translateY(-10px); }
+    50%{ transform: translateY(0); }
+    75%{ transform: translateY(-5px); }
+}
+
+/* تغییر رنگ پیکسلی */
+@keyframes colorShift {
+    0% { color: #351005; text-shadow: 0 0 10px #00ff00; }
+    25% { color: #064123; text-shadow: 0 0 15px #00ff7f; }
+    50% { color: #4e4e0c; text-shadow: 0 0 20px #ffff00; }
+    75% { color: #6b3a09; text-shadow: 0 0 15px #ff7f00; }
+    100% { color: #610361; text-shadow: 0 0 10px #ff00ff; }
+}
+
+a{
+    text-decoration:none;
+    color: inherit;
+}
