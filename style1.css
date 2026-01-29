@@ -1,0 +1,169 @@
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    background:linear-gradient(135deg,#4c00ff,#001a66);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Lalezar', cursive;
+    animation: bgShift 8s infinite alternate;
+    position:relative;
+    overflow-x:hidden;
+}
+
+/* container */
+.container{
+    width:100%;
+    max-width:420px;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+    text-align:center;
+    z-index:1; /* جلوتر از پس‌زمینه باشد */
+}
+
+/* دکمه دانلود */
+#p{
+    background:black;
+    color:red;
+    padding:12px;
+    border-radius:12px;
+    font-size:18px;
+    transition:0.3s;
+    animation: bounce 2s infinite alternate;
+}
+
+#p:hover{
+    background:#ccc;
+    color:black;
+    box-shadow:0 0 15px red;
+}
+
+/* عنوان اصلی */
+.text{
+    color:#00f7ff;
+    font-size:22px;
+    line-height:1.5;
+    display:inline-block;
+    text-shadow: 0 0 5px #0082be, 0 0 10px #052657;
+    animation: jump 1s infinite, colorShift 3s infinite alternate;
+}
+
+/* گیف */
+.i{
+    width:40px;
+    vertical-align:middle;
+    animation: rotate 4s linear infinite;
+}
+
+/* لینک شبکه‌ها */
+.links{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    transition: all 0.5s ease-in-out;
+}
+
+.img-link{
+    width:90px;
+    border-radius:16px;
+    transition:0.3s;
+    animation: bounce 2s infinite alternate;
+}
+
+.img-link:hover{
+    transform:scale(1.1) rotate(-5deg);
+}
+
+/* باکس معرفی */
+#div{
+    background:chocolate;
+    color:black;
+    padding:15px;
+    border-radius:16px;
+    font-size:18px;
+    animation: shake 3s infinite;
+}
+
+/* انیمیشن‌ها */
+
+/* جهش پیکسلی */
+@keyframes jump {
+    0%,100%{ transform: translateY(0); }
+    25%{ transform: translateY(-8px); }
+    50%{ transform: translateY(0); }
+    75%{ transform: translateY(-4px); }
+}
+
+/* تکان دادن دکمه و لینک‌ها */
+@keyframes bounce {
+    0%,100%{ transform: translateY(0); }
+    50%{ transform: translateY(-6px) scale(1.05); }
+}
+
+/* چرخش گیف */
+@keyframes rotate {
+    0%{ transform: rotate(0deg); }
+    100%{ transform: rotate(360deg); }
+}
+
+/* لرزش باکس معرفی */
+@keyframes shake {
+    0%{ transform: translateX(0); }
+    25%{ transform: translateX(-5px); }
+    50%{ transform: translateX(5px); }
+    75%{ transform: translateX(-5px); }
+    100%{ transform: translateX(0); }
+}
+
+/* تغییر رنگ‌های پیکسلی */
+@keyframes colorShift {
+    0% { color: #00f7ff; }
+    20% { color: #00ff7f; }
+    40% { color: #ffff00; }
+    60% { color: #ff7f00; }
+    80% { color: #ff00ff; }
+    100% { color: #00f7ff; }
+}
+
+/* تغییر پس‌زمینه */
+@keyframes bgShift {
+    0%{ background: linear-gradient(135deg,#4c00ff,#001a66); }
+    50%{ background: linear-gradient(135deg,#ff00ff,#00ff7f); }
+    100%{ background: linear-gradient(135deg,#4c00ff,#001a66); }
+}
+
+/* حرکت استیو ماین کرافت */
+.steve{
+    position:absolute;
+    bottom:50px;
+    width:60px;
+    animation: walk 8s linear infinite;
+    z-index:2; /* روی همه چیز */
+}
+
+@keyframes walk {
+    0%{ left: -80px; transform: rotateY(0deg); }
+    50%{ left: calc(100% + 80px); transform: rotateY(180deg); }
+    100%{ left: -80px; transform: rotateY(0deg); }
+}
+
+/* دسکتاپ */
+@media (min-width:768px){
+    .container{
+        max-width:700px;
+    }
+
+    .text{
+        font-size:32px;
+    }
+
+    .img-link{
+        width:120px;
+    }
+}
