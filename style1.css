@@ -1,7 +1,10 @@
+/* عمومی */
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:'Lalezar', cursive;
 }
-
 body{
     margin:0;
     min-height:100vh;
@@ -9,13 +12,12 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    font-family:'Lalezar', cursive;
-    animation: bgShift 8s infinite alternate;
     position:relative;
     overflow-x:hidden;
+    animation: bgShift 8s infinite alternate;
 }
 
-/* container */
+/* کانتینر */
 .container{
     width:100%;
     max-width:420px;
@@ -24,7 +26,8 @@ body{
     flex-direction:column;
     gap:25px;
     text-align:center;
-    z-index:1; /* جلوتر از پس‌زمینه باشد */
+    z-index:1;
+    animation: shakeContainer 3s infinite;
 }
 
 /* دکمه دانلود */
@@ -34,14 +37,15 @@ body{
     padding:12px;
     border-radius:12px;
     font-size:18px;
+    border:none;
+    cursor:pointer;
     transition:0.3s;
-    animation: bounce 2s infinite alternate;
+    animation: bounceCrazy 1.2s infinite alternate, flicker 0.1s infinite;
 }
-
 #p:hover{
     background:#ccc;
     color:black;
-    box-shadow:0 0 15px red;
+    box-shadow:0 0 25px red,0 0 50px #ff0000;
 }
 
 /* عنوان اصلی */
@@ -51,14 +55,14 @@ body{
     line-height:1.5;
     display:inline-block;
     text-shadow: 0 0 5px #0082be, 0 0 10px #052657;
-    animation: jump 1s infinite, colorShift 3s infinite alternate;
+    animation: jumpFast 0.8s infinite, colorShift 3s infinite alternate, glitchText 0.5s infinite;
 }
 
 /* گیف */
 .i{
     width:40px;
     vertical-align:middle;
-    animation: rotate 4s linear infinite;
+    animation: rotate 3s linear infinite, jumpFast 1s infinite alternate;
 }
 
 /* لینک شبکه‌ها */
@@ -68,16 +72,14 @@ body{
     gap:15px;
     transition: all 0.5s ease-in-out;
 }
-
 .img-link{
     width:90px;
     border-radius:16px;
     transition:0.3s;
-    animation: bounce 2s infinite alternate;
+    animation: bounceCrazy 1.5s infinite alternate, flicker 0.2s infinite;
 }
-
 .img-link:hover{
-    transform:scale(1.1) rotate(-5deg);
+    transform:scale(1.2) rotate(-10deg);
 }
 
 /* باکس معرفی */
@@ -87,41 +89,61 @@ body{
     padding:15px;
     border-radius:16px;
     font-size:18px;
-    animation: shake 3s infinite;
+    animation: shakeCrazy 1.5s infinite, glitchText 1s infinite;
+}
+
+/* استیو ماینکرفت */
+.steve{
+    position:absolute;
+    bottom:50px;
+    width:60px;
+    animation: walkFast 5s linear infinite;
+    z-index:2;
 }
 
 /* انیمیشن‌ها */
 
-/* جهش پیکسلی */
-@keyframes jump {
+/* جهش سریع متن */
+@keyframes jumpFast {
     0%,100%{ transform: translateY(0); }
-    25%{ transform: translateY(-8px); }
+    10%{ transform: translateY(-10px); }
+    20%{ transform: translateY(-5px); }
+    30%{ transform: translateY(-12px); }
     50%{ transform: translateY(0); }
-    75%{ transform: translateY(-4px); }
+    70%{ transform: translateY(-8px); }
+    90%{ transform: translateY(-3px); }
 }
 
-/* تکان دادن دکمه و لینک‌ها */
-@keyframes bounce {
-    0%,100%{ transform: translateY(0); }
-    50%{ transform: translateY(-6px) scale(1.05); }
+/* bounce دیوانه دکمه‌ها و لینک‌ها */
+@keyframes bounceCrazy {
+    0%,100%{ transform: translateY(0) scale(1); }
+    10%{ transform: translateY(-6px) scale(1.05) rotate(-2deg); }
+    25%{ transform: translateY(5px) scale(1.02) rotate(1deg); }
+    40%{ transform: translateY(-8px) scale(1.1) rotate(-3deg); }
+    60%{ transform: translateY(3px) scale(0.95) rotate(2deg); }
+    80%{ transform: translateY(-4px) scale(1.08) rotate(-1deg); }
 }
 
-/* چرخش گیف */
-@keyframes rotate {
-    0%{ transform: rotate(0deg); }
-    100%{ transform: rotate(360deg); }
+/* glitch متن و باکس‌ها */
+@keyframes glitchText {
+    0%,100%{ transform: translate(0,0) skew(0deg); }
+    20%{ transform: translate(-3px,2px) skew(5deg); }
+    40%{ transform: translate(2px,-2px) skew(-3deg); }
+    60%{ transform: translate(-2px,1px) skew(4deg); }
+    80%{ transform: translate(3px,-1px) skew(-2deg); }
 }
 
 /* لرزش باکس معرفی */
-@keyframes shake {
-    0%{ transform: translateX(0); }
-    25%{ transform: translateX(-5px); }
-    50%{ transform: translateX(5px); }
-    75%{ transform: translateX(-5px); }
-    100%{ transform: translateX(0); }
+@keyframes shakeCrazy {
+    0%,100%{ transform: translateX(0) rotate(0deg); }
+    10%{ transform: translateX(-6px) rotate(-2deg); }
+    25%{ transform: translateX(6px) rotate(3deg); }
+    40%{ transform: translateX(-5px) rotate(-1deg); }
+    60%{ transform: translateX(5px) rotate(2deg); }
+    80%{ transform: translateX(-4px) rotate(-3deg); }
 }
 
-/* تغییر رنگ‌های پیکسلی */
+/* تغییر رنگ متن */
 @keyframes colorShift {
     0% { color: #00f7ff; }
     20% { color: #00ff7f; }
@@ -131,39 +153,54 @@ body{
     100% { color: #00f7ff; }
 }
 
-/* تغییر پس‌زمینه */
+/* پس‌زمینه متحرک */
 @keyframes bgShift {
-    0%{ background: linear-gradient(135deg,#4c00ff,#001a66); }
-    50%{ background: linear-gradient(135deg,#ff00ff,#00ff7f); }
-    100%{ background: linear-gradient(135deg,#4c00ff,#001a66); }
+    0%{ background: linear-gradient(135deg,#4c00ff4f,#001a66); }
+    50%{ background: linear-gradient(135deg,#00ff5571,#00ff7f); }
+    100%{ background: linear-gradient(135deg,#9dff006b,#001a66); }
 }
 
-/* حرکت استیو ماین کرافت */
-.steve{
-    position:absolute;
-    bottom:50px;
-    width:60px;
-    animation: walk 8s linear infinite;
-    z-index:2; /* روی همه چیز */
+/* چرخش گیف */
+@keyframes rotate {
+    0%{ transform: rotate(0deg); }
+    100%{ transform: rotate(360deg); }
 }
 
-@keyframes walk {
-    0%{ left: -80px; transform: rotateY(0deg); }
-    50%{ left: calc(100% + 80px); transform: rotateY(180deg); }
-    100%{ left: -80px; transform: rotateY(0deg); }
+/* حرکت استیو سریع و پرش کوتاه */
+@keyframes walkFast {
+    0%{ left:-80px; transform: rotateY(0deg) translateY(0); }
+    25%{ transform: rotateY(0deg) translateY(-5px); }
+    50%{ left:calc(100% + 80px); transform: rotateY(180deg) translateY(0); }
+    75%{ transform: rotateY(180deg) translateY(-5px); }
+    100%{ left:-80px; transform: rotateY(0deg) translateY(0); }
 }
 
-/* دسکتاپ */
+/* shake container */
+@keyframes shakeContainer{
+    0%,100%{ transform: translateX(0); }
+    30%{ transform: translateX(-2px); }
+    60%{ transform: translateX(2px); }
+}
+
+/* flicker سریع برای نورانی کردن عناصر */
+@keyframes flicker{
+    0%,19%,21%,50%,52%,100%{ opacity:1; }
+    20%,51%{ opacity:0.5; }
+}
+
+/* رسانه */
 @media (min-width:768px){
     .container{
         max-width:700px;
     }
-
     .text{
         font-size:32px;
     }
-
     .img-link{
         width:120px;
     }
+}
+
+#end{
+    background-color: #000000;
 }
