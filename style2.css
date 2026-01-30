@@ -39,10 +39,15 @@ body{
 
 /* تغییر رنگ پیکسلی */
 @keyframes colorShift {
-    0% { color: #351005; text-shadow: 0 0 10px #00ff00; }
-    25% { color: #064123; text-shadow: 0 0 15px #00ff7f; }
-    50% { color: #4e4e0c; text-shadow: 0 0 20px #ffff00; }
-    75% { color: #6b3a09; text-shadow: 0 0 15px #ff7f00; }
+    10% { color: #351005; text-shadow: 0 0 10px #00ff00; }
+    20% { color: #064123; text-shadow: 0 0 15px #00ff7f; }
+    30% { color: #4e4e0c; text-shadow: 0 0 20px #ffff00; }
+    40% { color: #6b3a09; text-shadow: 0 0 15px #ff7f00; }
+    50% { color: #610361; text-shadow: 0 0 10px #ff00ff; }
+    60% { color: #351005; text-shadow: 0 0 10px #00ff00; }
+    70% { color: #064123; text-shadow: 0 0 15px #00ff7f; }
+    80% { color: #4e4e0c; text-shadow: 0 0 20px #ffff00; }
+    90% { color: #6b3a09; text-shadow: 0 0 15px #ff7f00; }
     100% { color: #610361; text-shadow: 0 0 10px #ff00ff; }
 }
 
